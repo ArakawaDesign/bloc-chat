@@ -7,7 +7,9 @@
 </head>
 <body>
     <h1>Bloc Chat</h1>
-    
+    <div ng-repeat="main in room.all track by $index">
+        
+    </div>
     
     
     
@@ -28,5 +30,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
     <script src="/scripts/app.js"></script>
     <script src="/scripts/controllers/MainCtrl.js"></script>
+    <script src="/scripts/services/Room.js"></script>
 </body>
 </html>
