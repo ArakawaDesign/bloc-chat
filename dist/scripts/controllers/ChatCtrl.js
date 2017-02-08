@@ -1,20 +1,21 @@
 (function() {
-    function ChatCtrl(Room, $scope, $uibModal) {
-        
-        
-        
-        $scope.rooms = Room;
+    function ChatCtrl(Room, $scope) {
         var rooms = $scope.rooms.all;
-        $scope.createRoom = function() {
-            $scope.rooms.all.$add({ foo: "bar"}).then(function(ref) {
+        $scope.submit = function(roomname) {
+            if ($scope.roomname) {
+                $scope.createRoom(roomname);
+                $scope.roomname = '';
+            }
+        }
+        
+        $scope.createRoom = function(roomname) {
+            $scope.rooms.all.$add({ $value: roomname}).then(function(ref) {
                 var id = ref.key;
-                console.log("added record with id " + id);
                 rooms.$indexFor(id);
             });
         };
     }    
     angular
         .module('blocChat')
-        .controller('ChatCtrl', ['Room', '$scope', '$uibModal', ChatCtrl])
-    
+        .controller('ChatCtrl', ['Room', '$scope', ChatCtrl])
 })();

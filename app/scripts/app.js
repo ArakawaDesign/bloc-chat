@@ -11,15 +11,10 @@
                 url: '/',
                 controller: 'HomeCtrl as home',
                 templateUrl: '/templates/home.html'
-            })
-            .state('chatModal', {
-                url: '/chatModal',
-                controller: 'ChatCtrl as chat',
-                templateUrl: '/templates/chatModal.html'
             });
     };
 
     angular
-        .module('blocChat', ['firebase','ui.router', 'ui.bootstrap'])
+        .module('blocChat', ['firebase','ui.router', 'ngAnimate'])
         .config(config);
 })();
