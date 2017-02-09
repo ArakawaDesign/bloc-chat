@@ -1,5 +1,6 @@
 (function() {
     function HomeCtrl(Room, $scope) {
+        console.log(Room);
         $scope.rooms = Room;
     }
     
