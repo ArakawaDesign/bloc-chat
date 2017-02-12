@@ -1,5 +1,17 @@
-<h1>Home Page</h1>
-<body ng-controller="HomeCtrl">
-    <div ng-repeat="room in home.room.all">Room Name = {{ home.room.all[$index].$value }}</div>
-    <div ng-repeat="room in home.room.all"></div>
-</body>
+<div ng-controller="ChatCtrl as chat">
+    <button ng-click="showForm=true">Create New Room</button>
+    
+    <div ng-show="showForm" class="slideDown">
+        <form ng-submit="submit(roomname)">
+        Enter a room name: 
+        <input type="text" ng-model="roomname" name="text" />
+        <br/>
+        <input type="submit" id="submit" value="Submit" />
+        </form>
+        <button ng-click="showForm=false">Cancel</button>
+    </div>
+</div>
+
+<div ng-repeat="room in rooms.all">
+    Room Name = {{ rooms.all[$index].$value }}
+</div>

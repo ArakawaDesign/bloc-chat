@@ -1,0 +1,23 @@
+(function() {
+    function ChatCtrl(Room, $scope) {
+        
+        console.log(Room.all);
+        console.log($scope.rooms.all);
+        $scope.submit = function(roomname) {
+            if ($scope.roomname) {
+                $scope.createRoom(roomname);
+                $scope.roomname = '';
+            }
+        }
+        
+        $scope.createRoom = function(roomname) {
+            $scope.rooms.all.$add({ $value: roomname}).then(function(ref) {
+                var id = ref.key;
+                $scope.rooms.all.$indexFor(id);
+            });
+        };
+    }    
+    angular
+        .module('blocChat')
+        .controller('ChatCtrl', ['Room', '$scope', ChatCtrl])
+})();
