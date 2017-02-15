@@ -7,10 +7,10 @@
             });
 
         $stateProvider
-            .state('home', {
+            .state('chat', {
                 url: '/',
-                controller: 'HomeCtrl as home',
-                templateUrl: '/templates/home.html'
+                controller: 'ChatCtrl as chat',
+                templateUrl: '/templates/chat.html'
             });
     };
 

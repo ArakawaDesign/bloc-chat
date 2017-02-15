@@ -1,11 +1,16 @@
 (function() {
     function ChatCtrl(Room, $scope) {
-        $scope.rooms = Room;
-        $scope.rooms.setRoom();
+        $scope.rooms = Room.all;
+        console.log($scope.rooms);
+        console.log($scope.rooms[0]);
+        console.log($scope.rooms[0].$value);
+        Room.setRoom($scope.rooms[0]);
+        Room.activeRoom();
+        Room.showRoom;
         $scope.submit = function(roomname) {
             if ($scope.roomname) {
-                $scope.rooms.addRoom($scope.roomname);
-                var selectedRoom = $scope.rooms.setRoom($scope.roomname);
+                Room.addRoom($scope.roomname);
+                Room.setRoom($scope.roomname);
                 $scope.roomname = '';
             };
         };

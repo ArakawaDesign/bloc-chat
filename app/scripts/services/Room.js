@@ -4,54 +4,43 @@
         var ref = firebase.database().ref().child("rooms");
         var rooms = $firebaseArray(ref);
 
-        var showRoom = rooms;
-        //Room.roomId = rooms;
-        //console.log(showRoom);
+        console.log(rooms);
+        console.log(rooms[0]);
 
-        /*showRoom.then(function(rooms) {
-            showRoom = rooms;
+        rooms.$loaded(function(rooms) {
+                console.log("async");
+                console.log(rooms[0]);
         });
-*/
-        console.log(showRoom);
 
-        Room.listRooms = function() {
-            return {
-                all: rooms
-            }
-        }
-
-        Room.addRoom = function(roomname) {
+        var addRoom = function(roomname) {
             rooms.$add({ $value: roomname }).then(function(ref) {
-                var id = ref.key
-                this.roomname = '';
+                var id = ref.key;
+
                 return rooms.$indexFor(id);
             });
         };
 
-        Room.setRoom = function(currentRoom) {
+        var setRoom = function(currentRoom) {
             console.log(currentRoom);
             if (!currentRoom) {
+                return rooms;
                 rooms.$loaded(function(rooms) {
                 return Room.showRoom = rooms[0].$value;
                 });
             } else {
-            return Room.showRoom = currentRoom;
+            return currentRoom;
             }
         };
 
-        Room.clickRoom = function(event) {
-            //console.log(event.currentTarget);
-            rooms.$loaded(function(rooms) {
-                console.log(event);
-                console.log(event.path[1].children[1].innerHTML);
-                console.log(rooms);
-                Room.roomId = event.path[1].children[1].innerHTML;
-                return Room.showRoom = event.currentTarget.innerHTML;
-            });
+        var activeRoom = function(clickedRoom) {
         }
 
-        return Room;
-
+        return {
+            all: rooms,
+            addRoom: addRoom,
+            setRoom: setRoom,
+            activeRoom: activeRoom
+        }
     }
     
     angular

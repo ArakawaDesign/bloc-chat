@@ -3,12 +3,12 @@
     padding: 0;
 }
 
-#messages {
+#messageList {
 	float: left;
 	width: 80%;
 }
 
-#rooms {
+#roomList {
 	float: left;
 	width: 20%;
 }
