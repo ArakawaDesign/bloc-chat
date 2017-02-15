@@ -1,12 +1,11 @@
 (function() {
-    function HomeCtrl(Room) {
-        console.log(Room);
-        this.room = Room;
+    function HomeCtrl(Room, $scope) {
+        //I think this controller is redundant
+        $scope.rooms = Room;
     }
-    
     
     angular
         .module('blocChat')
-        .controller('HomeCtrl', ['Room', HomeCtrl])
+        .controller('HomeCtrl', ['Room', '$scope', HomeCtrl])
     
 })();

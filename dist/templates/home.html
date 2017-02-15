@@ -1,17 +1,29 @@
-<div ng-controller="ChatCtrl as chat">
-    <button ng-click="showForm=true">Create New Room</button>
-    
-    <div ng-show="showForm" class="slideDown">
-        <form ng-submit="submit(roomname)">
-        Enter a room name: 
-        <input type="text" ng-model="roomname" name="text" />
-        <br/>
-        <input type="submit" id="submit" value="Submit" />
-        </form>
-        <button ng-click="showForm=false">Cancel</button>
-    </div>
-</div>
+<body>
 
-<div ng-repeat="room in rooms.all">
-    Room Name = {{ rooms.all[$index].$value }}
-</div>
+    <div id="rooms" ng-controller="ChatCtrl as chat">
+    ROOMS
+        <br>
+        <button ng-click="showForm=true">Create New Room</button>
+        
+        <div ng-show="showForm" class="slideDown">
+            <form ng-submit="submit(roomname)">
+            Enter a room name: 
+            <input type="text" ng-model="roomname" name="roomnames" />
+            <br/>
+            <input ng-click="showRoom()" type="submit" id="submit" value="Submit" />
+            </form>
+            <button ng-click="showForm=false">Cancel</button>
+        </div>
+
+        <div ng-repeat="room in rooms.listRooms().all">
+            <a href ng-click="rooms.clickRoom($event)">{{ room.$value }}</a>
+            <div ng-show="false">{{ room.$id }}
+        </div>
+
+    </div>
+
+    <div id="messages" ng-controller="ChatCtrl as chat">
+        Current Room = {{ rooms.showRoom }}
+    </div>
+
+</body>
