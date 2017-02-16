@@ -5,7 +5,8 @@
 
         $scope.selectRoom = function(room) {
             $scope.activeRoom = room;
-            $scope.messages = Message.getByRoomId($scope.activeRoom.$id);
+            console.log($scope.activeRoom.$id);
+            $scope.messages = Message.getByRoomId(room.$id);
             console.log($scope.messages);
         };
 

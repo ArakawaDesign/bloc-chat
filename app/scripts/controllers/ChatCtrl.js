@@ -5,8 +5,7 @@
 
         $scope.selectRoom = function(room) {
             $scope.activeRoom = room;
-            $scope.messages = Message.getByRoomId($scope.activeRoom.$id);
-            console.log($scope.messages);
+            $scope.messages = Message.getByRoomId(room.$id);
         };
 
         $scope.submit = function(roomname) {
@@ -19,9 +18,6 @@
                 });
             };
         };
-
-
-
     }  
 
     angular

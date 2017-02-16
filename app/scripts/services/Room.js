@@ -7,7 +7,6 @@
         var addRoom = function(roomname) {
             return rooms.$add({ name: roomname }).then(function(ref) {
                 var id = ref.key;
-                console.log(ref.key);
                 return rooms.$getRecord(id);
             });
         };
