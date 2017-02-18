@@ -1,16 +1,16 @@
 (function() {
-    function SetUserCtrl($scope, $location, BlocChatCookies) {
-        console.log(BlocChatCookies);
+    function SetUserCtrl($scope, $location, $cookies) {
       $scope.submit = function() {
         if ($scope.text) {
-            console.log('testing');
+          console.log('testing');
           var newUser = $scope.text;  
-          BlocChatCookies.addNewUser(newUser);
+          $cookies.put('blocChatCurrentUser', newUser);
           $scope.text = '';
+          $location.path('/');
         }
     }
 }
     angular
         .module('blocChat')
-        .controller('SetUserCtrl', ['$scope','$location', 'BlocChatCookies', SetUserCtrl])
+        .controller('SetUserCtrl', ['$scope','$location', '$cookies', SetUserCtrl])
 })();

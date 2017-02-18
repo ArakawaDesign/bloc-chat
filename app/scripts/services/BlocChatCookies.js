@@ -4,15 +4,10 @@
     console.log($cookies);
     console.log(currentUser);
     if (!currentUser || currentUser === '') {
-
-    var addNewUser = function(newUser) {
-      $cookies.put('blocChatCurrentUser', newUser);
-      }
     	$location.path('/setUser');
     }
   }
   angular
     .module('blocChat')
-    .run(['$cookies', '$location', BlocChatCookies])
-    .factory('BlocChatCookies', [BlocChatCookies]);
+    .run(['$cookies', '$location', BlocChatCookies]);
 })();
