@@ -2,12 +2,9 @@
     function ChatCtrl(Room, $scope, Message) {
         $scope.rooms = Room.all;
         $scope.activeRoom = null;
-
         $scope.selectRoom = function(room) {
             $scope.activeRoom = room;
-            console.log($scope.activeRoom.$id);
             $scope.messages = Message.getByRoomId(room.$id);
-            console.log($scope.messages);
         };
 
         $scope.submit = function(roomname) {
@@ -20,9 +17,6 @@
                 });
             };
         };
-
-
-
     }  
 
     angular

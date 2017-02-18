@@ -2,7 +2,6 @@
     function ChatCtrl(Room, $scope, Message) {
         $scope.rooms = Room.all;
         $scope.activeRoom = null;
-
         $scope.selectRoom = function(room) {
             $scope.activeRoom = room;
             $scope.messages = Message.getByRoomId(room.$id);
