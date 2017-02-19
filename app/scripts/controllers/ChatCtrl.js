@@ -17,6 +17,13 @@
                 });
             };
         };
+
+        $scope.messageSubmit = function(message) {
+            if ($scope.message) {
+                Message.send($scope.message);
+                $scope.message = '';
+            }
+        }
     }  
 
     angular

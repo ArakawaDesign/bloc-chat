@@ -1,6 +1,6 @@
 <body>
     <div id="roomList">
-    ROOMS
+        ROOMS
         <br>
         <button ng-click="showForm=true">Create New Room</button>
         <div ng-show="showForm" class="slideDown">
@@ -12,22 +12,22 @@
             </form>
             <button ng-click="showForm=false">Cancel</button>
         </div>
-
         <div ng-repeat="room in rooms">
             <a href ng-click="selectRoom(room)">{{ room.name }}</a>
         </div>
-
     </div>
-
     <div id="currentRoom" ng-hide="!activeRoom">
         Current Room = {{ activeRoom.name }}
-        <div id="messageList" ng-repeat="message in messages">
-                {{ message.content }}
+        <div id="messageDisplay" ng-repeat="message in messages">
+             [{{ message.sentAt }}] {{ message.username }} : {{message.content}}
+        </div>
+
+        <div id="messageSubmit">
+            <form ng-submit="messageSubmit(message)">
+                Type your message here:
+                <input type="text" ng-model="message" name="message"/>
+                <input ng-disabled="message === ''" type="submit" id="submitMessage" value="Send" />
+            </form>
         </div>
     </div>
-
-    <div id="usernameSubmit" ng-hide="!currentUser">
-    Username
-    </div>
-
 </body>
