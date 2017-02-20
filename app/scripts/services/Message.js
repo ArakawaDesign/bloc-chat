@@ -12,11 +12,14 @@
 		}
 
 		var send = function(newMessage) {
-			firebase.database().ref().child("messages").push({
+			messages.$add({
 				content: newMessage,
 				username: currentUser,
 				roomId: roomIdNum,
 				sentAt: getTimestamp()
+			}).then(function(ref) {
+				var id = ref.key;
+				messages.$indexFor(id);
 			});
 		};
 		

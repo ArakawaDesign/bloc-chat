@@ -8,8 +8,8 @@
         };
 
         $scope.submit = function(roomname) {
-            if ($scope.roomname) {
-                var newRoom = Room.addRoom($scope.roomname);
+            if (roomname) {
+                var newRoom = Room.addRoom(roomname);
 
                 newRoom.then(function(room) {
                     $scope.selectRoom(room);
@@ -19,8 +19,8 @@
         };
 
         $scope.messageSubmit = function(message) {
-            if ($scope.message) {
-                Message.send($scope.message);
+            if (message) {
+                Message.send(message);
                 $scope.message = '';
             }
         }
