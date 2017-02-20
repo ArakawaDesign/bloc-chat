@@ -1,20 +1,52 @@
 (function() {
-	function Message($firebaseArray) {
+	function Message($firebaseArray, $cookies) {
 		var ref = firebase.database().ref().child("messages").orderByChild('roomId');
 		var messages = $firebaseArray(ref);
 
+		var currentUser = $cookies.get('blocChatCurrentUser');
+		var roomIdNum = null;
+
 		var getByRoomId = function(roomId) {
+			roomIdNum = roomId
 			return $firebaseArray(ref.equalTo(roomId));
 		}
 
+		var send = function(newMessage) {
+			messages.$add({
+				content: newMessage,
+				username: currentUser,
+				roomId: roomIdNum,
+				sentAt: getTimestamp()
+			});
+		};
+		
+		var getTimestamp = function() {
+			var date = new Date();
+			var hours = date.getHours()
+			var minutes = date.getMinutes().toString();
+			var seconds = date.getSeconds().toString();
+			if (hours < 12) {
+				var period = 'AM';
+			} else {
+				period = 'PM';
+			}
+
+			if (hours > 12) {
+				hours -= 12;
+				hours.toString()
+			}
+			var timestamp = hours + ':' + minutes + ':' + seconds + " " + period;
+			return timestamp;
+		}
 		return {
 			all: messages,
-			getByRoomId: getByRoomId
-		}
+			getByRoomId: getByRoomId,
+			send: send
+		};
 	}
 
 	angular
 		.module('blocChat')
-		.factory('Message', ['$firebaseArray', Message]);
+		.factory('Message', ['$firebaseArray', '$cookies', Message]);
 
 })();
