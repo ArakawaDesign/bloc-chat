@@ -17,9 +17,6 @@
 				username: currentUser,
 				roomId: roomIdNum,
 				sentAt: getTimestamp()
-			}).then(function(ref) {
-				var id = ref.key;
-				messages.$indexFor(id);
 			});
 		};
 		
